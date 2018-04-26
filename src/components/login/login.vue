@@ -1,0 +1,11 @@
+<template>
+  <div class="login">我是登录</div>
+</template>
+<script>
+export default {
+  
+}
+</script>
+<style lang="stylus">
+
+</style>
