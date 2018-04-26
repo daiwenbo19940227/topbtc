@@ -50,7 +50,8 @@ export default {
         .head-navbar
             .nav-item
                 &>a
-                    font-size 14px
+                    font-size 17px
+                    line-height 17px
                     color white
                     margin-left 25px
         .login-register
@@ -72,5 +73,3 @@ export default {
                 color white
 
 </style>
-
-

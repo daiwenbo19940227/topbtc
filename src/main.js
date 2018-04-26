@@ -13,6 +13,7 @@ import Account from './components/account/account.vue'
 import Login from './components/login/login.vue'
 import Register from './components/register/register.vue'
 import Invite from './components/invite/invite.vue'
+import Home from './components/home/home.vue'
 
 Vue.config.productionTip = false
 
@@ -20,13 +21,21 @@ Vue.use(BootstrapVue)
 Vue.use(VueRouter)
 
 const routes = [
-  { path: '/main', component: Main},
-  { path: '/asset', component: Asset},
-  { path: '/notice', component: Notice},
-  { path: '/account', component: Account},
-  { path: '/login', component: Login},
-  { path: '/register', component: Register},
-  { path: '/invite', component:Invite}
+  { path: '/', component: App ,
+      children: [
+        { path: '/home', component: Home,
+          children:[
+            { path: '/main', component: Main},
+            { path: '/asset', component: Asset},
+            { path: '/account', component: Account},
+            { path: '/login', component: Login},
+            { path: '/register', component: Register},
+            { path: '/invite', component:Invite}
+          ]
+        },
+        { path: '/notice', component: Notice}
+      ]
+  },
 ]
 
 const router = new VueRouter({
@@ -37,7 +46,4 @@ new Vue({
   mode: 'history',
   el: '#app',
   router,
-  template: '<App/>',
-  components: { App }
 })
-router.push('/main')
