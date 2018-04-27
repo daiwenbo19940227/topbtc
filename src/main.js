@@ -14,6 +14,10 @@ import Login from './components/login/login.vue'
 import Register from './components/register/register.vue'
 import Invite from './components/invite/invite.vue'
 import Home from './components/home/home.vue'
+import MainSet from './components/set/set.vue'
+import Market from './components/market/market.vue'
+import Optional from './components/optional/optional.vue'
+import Hold from './components/hold/hold.vue'
 
 Vue.config.productionTip = false
 
@@ -25,7 +29,14 @@ const routes = [
       children: [
         { path: '/home', component: Home,
           children:[
-            { path: '/main', component: Main},
+            { path: '/main', component: Main ,
+              children :[
+                { path: '/set' , component: MainSet},
+                { path: '/market', component: Market },
+                { path: '/optional', component: Optional},
+                { path: '/hold', component: Hold}
+              ]
+          },
             { path: '/asset', component: Asset},
             { path: '/account', component: Account},
             { path: '/login', component: Login},
@@ -45,5 +56,8 @@ const router = new VueRouter({
 new Vue({
   mode: 'history',
   el: '#app',
-  router,
+  router
 })
+router.push('/home')
+router.push('/main')
+router.push('/market')

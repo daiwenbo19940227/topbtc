@@ -1,32 +1,31 @@
 <template>
     <div>
         <div class="header">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-2">
-                        <div class="logo"></div>
-                    </div>
-                    <div class="col-md-8">
-                        <div class="head-navbar">
-                            <ul class="nav nav-pills">
-                                <li role="presentation" class="nav-item"><router-link to="/main">首页</router-link></li>
-                                <li role="presentation" class="nav-item"><router-link to="/asset">资产管理</router-link></li>
-                                <li role="presentation" class="nav-item"><router-link to="/account">账号管理</router-link></li>
-                                <li role="presentation" class="nav-item"><router-link to="/notice">公告</router-link></li>
-                                <li role="presentation" class="nav-item"><router-link to="/invite">邀请朋友</router-link></li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col-md-2">
-                        <div class="login-register">
-                            <div class="login"><router-link to="/login">登录</router-link></div>
-                            <div class="register"><router-link to="/register">注册</router-link></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <router-view></router-view> 
+           <b-container>
+               <b-row>
+                   <b-col cols="2">
+                       <div class="logo"></div>
+                   </b-col>
+                   <b-col cols="7">
+                       <div class="head-navbar">
+                           <b-nav>
+                               <b-nav-item active><router-link to="/main">首页</router-link> </b-nav-item>
+                               <b-nav-item><router-link to="/asset">资产管理</router-link> </b-nav-item>
+                               <b-nav-item><router-link to="/account">账号管理</router-link> </b-nav-item>
+                               <b-nav-item><router-link to="/notice">公告</router-link></b-nav-item>
+                               <b-nav-item><router-link to="/invite">邀请朋友</router-link></b-nav-item>
+                           </b-nav>
+                       </div>
+                   </b-col>
+                   <b-col cols="3">
+                       <div class="login-register">
+                           <span class="login"><router-link to="/login">登陆</router-link></span>
+                           <span class="register"><router-link to="/register">注册</router-link> </span>
+                       </div>
+                   </b-col>
+               </b-row>
+           </b-container>
+        </div> 
     </div> 
 </template>
 <script>
@@ -38,8 +37,7 @@ export default {
     .header
         background #2c75e6
         width 100%
-        height 70px
-        padding 22px
+        height 50px 
         .logo
             display inline-block
             width 100px
@@ -47,16 +45,21 @@ export default {
             background-image url('../../components/header/logo.jpg')
             background-size 100px 26px
             background-repeat no-repeat
+            margin-top 12px
         .head-navbar
-            .nav-item
-                &>a
-                    font-size 17px
-                    line-height 17px
-                    color white
-                    margin-left 25px
+            .nav
+                .nav-item
+                    .nav-link
+                        padding .8rem 1rem
+                        &>a
+                            font-size 14px
+                            line-height 14px
+                            color white
         .login-register
+            height 50px
             .login,.register
-                float left
+                float right
+                margin-top 10px
                 margin-left 10px
                 width 50px
                 height 30px
