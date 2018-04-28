@@ -9,7 +9,7 @@
                    <b-col cols="7">
                        <div class="head-navbar">
                            <b-nav>
-                               <b-nav-item active><router-link to="/main">首页</router-link> </b-nav-item>
+                               <b-nav-item><router-link to="/main">首页</router-link> </b-nav-item>
                                <b-nav-item><router-link to="/asset">资产管理</router-link> </b-nav-item>
                                <b-nav-item><router-link to="/account">账号管理</router-link> </b-nav-item>
                                <b-nav-item><router-link to="/notice">公告</router-link></b-nav-item>
@@ -29,6 +29,9 @@
     </div> 
 </template>
 <script>
+/**
+    
+ */
 export default {
   
 }
@@ -49,11 +52,22 @@ export default {
         .head-navbar
             .nav
                 .nav-item
+                    :hover
+                        background: #0c69d6
+                        -moz-transition: all 1s ease-in-out 0s
+                        -webkit-transition:all 1s ease-in-out 0s
+                        transition:all 1s ease-in-out 0s
+                        -o-transition:all 1s ease-in-out 0s
                     .nav-link
-                        padding .8rem 1rem
+                        display block
+                        height 50px
+                        line-height 50px
+                        padding 0rem 1rem
+                        :hover
+                            text-decoration none
                         &>a
+                            display block
                             font-size 14px
-                            line-height 14px
                             color white
         .login-register
             height 50px
@@ -68,6 +82,8 @@ export default {
                 border 1px solid white
                 line-height 30px
                 font-size 14px
+                :hover
+                    text-decoration none
             .login a
                 color #2c75e6
             .register
