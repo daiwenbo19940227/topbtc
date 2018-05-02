@@ -5,7 +5,7 @@
         <b-col>关于NGOT上线交易及活动的公告</b-col>
         <b-col>关于NGOT上线交易及活动的公告</b-col>
         <b-col>关于NGOT上线交易及活动的公告</b-col>
-        <b-col cols="1">图标</b-col>
+        <b-col cols="1"><span class="icon">图标</span></b-col>
       </b-row>
     </b-container>
   </div>
@@ -21,5 +21,8 @@ export default {
     background #fefaed
     font-size 14px
     line-height 30px
+    .icon
+      display block
+      float right 
 </style>
 

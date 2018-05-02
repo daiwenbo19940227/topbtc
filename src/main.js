@@ -19,6 +19,8 @@ import Market from './components/market/market.vue'
 import Optional from './components/optional/optional.vue'
 import Hold from './components/hold/hold.vue'
 
+import './common/stylus/index.styl'
+
 Vue.config.productionTip = false
 
 Vue.use(BootstrapVue)
