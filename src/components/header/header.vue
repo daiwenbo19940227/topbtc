@@ -54,10 +54,10 @@ export default {
                 .nav-item
                     :hover
                         background: #0c69d6
-                        -moz-transition: all 1s ease-in-out 0s
-                        -webkit-transition:all 1s ease-in-out 0s
-                        transition:all 1s ease-in-out 0s
-                        -o-transition:all 1s ease-in-out 0s
+                        -moz-transition: all 0.5s ease-in-out 0s
+                        -webkit-transition:all 0.5s ease-in-out 0s
+                        transition:all 0.5s ease-in-out 0s
+                        -o-transition:all 0.5s ease-in-out 0s
                     .nav-link
                         display block
                         height 50px

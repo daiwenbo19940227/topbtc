@@ -20,6 +20,7 @@ import Optional from './components/optional/optional.vue'
 import Hold from './components/hold/hold.vue'
 
 import './common/stylus/index.styl'
+import './common/stylus/iconfont.css'
 
 Vue.config.productionTip = false
 

@@ -5,11 +5,10 @@
       <b-container>
         <b-row>
           <b-col>
-              <div class="rateExchange" id="rateExchange" display = flase>汇率$USD.</div>
+              <div class="rateExchange" id="rateExchange">汇率$USD.</div>
               <b-popover 
               target = "rateExchange"
               placement = "bottomleft"
-              show.sync = flase 
               triggers = "hover">
                 <b-row>
                   <b-col cols="4">usd</b-col>
@@ -53,11 +52,13 @@ export default {
 
 <style lang="stylus">
   .change
+    background #ffffff
     height 50px
     .rateExchange,.lanagueExchange
       width 100px
-      font-size 14px
+      font-size 16px
       line-height 50px
+      font-weight 700
     .lanagueExchange
      float right
      text-align right
