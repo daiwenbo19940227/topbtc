@@ -1,36 +1,14 @@
 <template>
-  <div class="home">
+  <div class="home" id="home">
     <v-header></v-header>
     <div class="change">
       <b-container>
         <b-row>
           <b-col>
-              <div class="rateExchange" id="rateExchange">汇率$USD.</div>
-              <b-popover 
-              target = "rateExchange"
-              placement = "bottomleft"
-              triggers = "hover">
-                <b-row>
-                  <b-col cols="4">usd</b-col>
-                  <b-col cols="4">usd</b-col>
-                  <b-col cols="4">usd</b-col>
-                  <b-col cols="4">usd</b-col>
-                </b-row>
-              </b-popover>
+              <div class="rateExchange" id="rateExchange">汇率$USD<span class="iconfont icon-xiala1"></span></div>
           </b-col>
           <b-col>
               <div class="lanagueExchange" id="bbb">中文简体</div>
-              <b-popover
-              target = "bbb"
-              placement ="bottomright"
-              triggers = "hover focus"
-              >
-                <b-row>
-                  <b-col cols="6">中文简体</b-col>
-                  <b-col cols="6">中文繁体</b-col>
-                  <b-col cols="6">中文繁体</b-col>
-                </b-row>
-              </b-popover>
           </b-col>
         </b-row>
       </b-container>
@@ -43,6 +21,8 @@
 import header from '../header/header'
 import noticetitle from '../noticetitle/noticetitle'
 export default {
+  methods : {
+  },
   components : {
    'v-header' : header,
    noticetitle
@@ -51,6 +31,7 @@ export default {
 </script>
 
 <style lang="stylus">
+.home
   .change
     background #ffffff
     height 50px
@@ -59,7 +40,10 @@ export default {
       font-size 16px
       line-height 50px
       font-weight 700
+    .rateExchangeItem
+      width 300px
+      background red
     .lanagueExchange
-     float right
-     text-align right
+      float right
+      text-align right
 </style>

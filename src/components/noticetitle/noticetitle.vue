@@ -3,11 +3,20 @@
     <b-container>
       <b-row>
         <b-col cols="11">
-          <b-row><b-col cols="4" v-for="item in news" :key="item.index" class="news-item">{{item.title}}({{item.releaseTime}})</b-col></b-row>
+            <b-row><b-col cols="4" v-for="(item,index) in news" :key="index" class="news-item" v-if='index<=2'  ref="newItems" @click="newsItemClick(index)">{{item.title}}({{item.releaseTime}})</b-col></b-row>
         </b-col>
         <b-col cols="1">
-          <span class="show iconfont icon-xiala"></span>
+          <span class="show iconfont icon-xiala" v-b-toggle.news-item></span>
         </b-col>
+        <b-collapse id="news-item">
+        <b-row>
+          <b-col cols="11">
+            <b-row>
+              <b-col cols="4" v-for="(item,index) in news" :key="index" class="news-item" v-if="index>2" @click="newsItemClick(index)">{{item.title}}({{item.releaseTime}})</b-col>
+            </b-row>
+          </b-col>
+       </b-row>
+      </b-collapse>
       </b-row>
     </b-container>
   </div>
@@ -29,6 +38,16 @@ export default {
     return{
       news:news
     }
+  },
+  methods:{
+    newsItemClick(index){
+      let newItems = this.$refs.newItems
+      for(var i =0;i<newItems.length;i++){
+        if (i==index){
+          console.log(newItems[i].className)
+        }
+      }
+    }
   }
 }
 </script>
@@ -39,7 +58,11 @@ export default {
     .news-item
       font-size 14px
       font-weight 700
+      cursor pointer
+    .news-item:hover
+        color #2c75e6
     .show
       float right
+      cursor pointer
 </style>
 

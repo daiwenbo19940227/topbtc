@@ -9,11 +9,11 @@
                    <b-col cols="7">
                        <div class="head-navbar">
                            <b-nav>
-                               <b-nav-item><router-link to="/main">首页</router-link> </b-nav-item>
-                               <b-nav-item><router-link to="/asset">资产管理</router-link> </b-nav-item>
-                               <b-nav-item><router-link to="/account">账号管理</router-link> </b-nav-item>
-                               <b-nav-item><router-link to="/notice">公告</router-link></b-nav-item>
+                               <b-nav-item><router-link to="/main">行情信息</router-link> </b-nav-item>
+                               <b-nav-item><router-link to="/asset">C2C交易大厅</router-link> </b-nav-item>
+                               <b-nav-item><router-link to="/account">财务中心</router-link> </b-nav-item>
                                <b-nav-item><router-link to="/invite">邀请朋友</router-link></b-nav-item>
+                               <b-nav-item><router-link to="/notice">公告</router-link></b-nav-item>
                            </b-nav>
                        </div>
                    </b-col>

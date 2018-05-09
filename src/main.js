@@ -4,6 +4,7 @@ import Vue from 'vue'
 import BootstrapVue from "bootstrap-vue"
 import App from './App'
 import VueRouter from 'vue-router'
+import VueResource from 'vue-resource'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
 import Main from './components/main/main.vue'
@@ -26,6 +27,7 @@ Vue.config.productionTip = false
 
 Vue.use(BootstrapVue)
 Vue.use(VueRouter)
+Vue.use(VueResource)
 
 const routes = [
   { path: '/', component: App ,
@@ -61,6 +63,4 @@ new Vue({
   el: '#app',
   router
 })
-router.push('/home')
-router.push('/main')
-router.push('/market')
+router.push('market')
