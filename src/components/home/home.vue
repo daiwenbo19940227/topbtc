@@ -1,31 +1,33 @@
 <template>
-  <div class="home" id="home">
+  <div class="home">
     <v-header></v-header>
-    <div class="change">
-      <b-container>
-        <b-row>
-          <b-col>
-              <div class="rateExchange" id="rateExchange">汇率$USD<span class="iconfont icon-xiala1"></span></div>
-          </b-col>
-          <b-col>
-              <div class="lanagueExchange" id="bbb">中文简体</div>
-          </b-col>
-        </b-row>
-      </b-container>
-    </div>
-    <noticetitle></noticetitle>
-    <router-view></router-view>
+    <b-container>
+      <div class="change">
+          <b-row>
+            <b-col>
+                <div class="rateExchange" id="rateExchange">汇率$USD<span class="iconfont icon-xiala1"></span></div>
+            </b-col>
+            <b-col>
+                <div class="lanagueExchange" id="bbb">中文简体</div>
+            </b-col>
+          </b-row>
+      </div>
+      <router-view></router-view>
+    </b-container>
+    <v-footer></v-footer>
   </div>
 </template>
 <script>
 import header from '../header/header'
 import noticetitle from '../noticetitle/noticetitle'
+import footer from '../footer/footer'
 export default {
   methods : {
   },
   components : {
    'v-header' : header,
-   noticetitle
+   noticetitle,
+   'v-footer':footer
   }
 }
 </script>

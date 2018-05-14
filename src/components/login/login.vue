@@ -24,7 +24,7 @@
 </template>
 <script>
 export default {
-  
+
 }
 </script>
 <style lang="stylus">
@@ -51,6 +51,7 @@ export default {
         &>li
           font-size 14px
           margin-top 10px
+          list-style none 
         .control-inline
           display inline-block
       .checkAll

@@ -1,5 +1,4 @@
 <template>
-    <div>
         <div class="header">
            <b-container>
                <b-row>
@@ -9,7 +8,7 @@
                    <b-col cols="7">
                        <div class="head-navbar">
                            <b-nav>
-                               <b-nav-item><router-link to="/main">行情信息</router-link> </b-nav-item>
+                               <b-nav-item><router-link to="/market">行情信息</router-link> </b-nav-item>
                                <b-nav-item><router-link to="/asset">C2C交易大厅</router-link> </b-nav-item>
                                <b-nav-item><router-link to="/account">财务中心</router-link> </b-nav-item>
                                <b-nav-item><router-link to="/invite">邀请朋友</router-link></b-nav-item>
@@ -26,7 +25,6 @@
                </b-row>
            </b-container>
         </div> 
-    </div> 
 </template>
 <script>
 /**
