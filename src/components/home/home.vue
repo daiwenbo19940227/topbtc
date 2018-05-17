@@ -7,6 +7,7 @@
                     <b-row>
                       <b-col>
                           <div class="rateExchange" id="rateExchange">汇率$USD<span class="iconfont icon-xiala1"></span></div>
+                          <b-popover target = "rateExchange" triggers="hover" placement="bottomright" :delay=delay>123</b-popover>
                       </b-col>
                       <b-col>
                           <div class="lanagueExchange" id="bbb">中文简体<span class="iconfont icon-xiala1"></span></div>
@@ -25,6 +26,11 @@ import header from '../header/header'
 import noticetitle from '../noticetitle/noticetitle'
 import footer from '../footer/footer'
 export default {
+  data(){
+    return{
+      delay:{show:500,hide:1000}
+    }
+  },
   methods : {
   },
   components : {

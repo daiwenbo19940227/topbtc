@@ -6,8 +6,9 @@
                     <b-row>
                         <b-col>
                             <b-nav vertical class="navlist">
-                                <router-link v-for="(item,index) in mymenu" :key="index" :to=item  data-toggle="tooltip" data-placement="left" title="Tooltip on left">
+                                <router-link v-for="(item,index) in mymenu" :key="index" :to=item :id = item>
                                     <span :class=myIcon[index]></span>
+                                    <b-tooltip :target=item :title=mypopover[index] placement="right"></b-tooltip>
                                 </router-link>
                             </b-nav>
                         </b-col>

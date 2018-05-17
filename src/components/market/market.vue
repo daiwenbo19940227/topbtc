@@ -132,6 +132,7 @@ export default {
                 height 30px
                 margin 0 auto
                 margin-top 10px
+                margin-right 0px
                 border-radius 20px 
                 .searchText
                     font-size 14px

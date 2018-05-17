@@ -22,6 +22,7 @@ import Hold from './components/hold/hold.vue'
 
 import './common/stylus/index.styl'
 import './common/stylus/iconfont.css'
+require('bootstrap/dist/js/bootstrap.js')
 
 
 Vue.config.productionTip = false
