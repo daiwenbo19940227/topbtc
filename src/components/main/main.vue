@@ -5,11 +5,10 @@
                 <div class="main-nav">
                     <b-row>
                         <b-col>
-                            <b-nav vertical>
-                                <b-nav-item><router-link to="/set"><span class="iconfont icon-shezhi"></span></router-link></b-nav-item>
-                                <b-nav-item><router-link to="/market"><span class="iconfont icon-diqiu"></span></router-link></b-nav-item>
-                                <b-nav-item><router-link to="/optional"><span class="iconfont icon-xing"></span></router-link></b-nav-item>
-                                <b-nav-item><router-link to="/hold"><span class="iconfont icon-qianmoney125"></span></router-link></b-nav-item>
+                            <b-nav vertical class="navlist">
+                                <router-link v-for="(item,index) in mymenu" :key="index" :to=item  data-toggle="tooltip" data-placement="left" title="Tooltip on left">
+                                    <span :class=myIcon[index]></span>
+                                </router-link>
                             </b-nav>
                         </b-col>
                     </b-row>
@@ -22,25 +21,40 @@
 <script>
 
 export default {
-
+    data(){
+        return{
+            mymenu:["set","market","optional","hold"],
+            myIcon:["iconfont icon-shezhi","iconfont icon-diqiu","iconfont icon-xing","iconfont icon-qianmoney125"],
+            mypopover:["设置","市场","自选","持有"]
+        }
+    },
+    component:
+    {
+        
+    }
 }
 </script>
 <style lang="stylus">
+.main
+    background-color #eee
+    min-height 575px
     .main-nav
         width 50px
         background #35425b
         margin-top 15px
-        .nav-item
-            :hover
-                background #2a3549
-            .nav-link
+        margin-bottom 50px
+        min-height 575px
+        .navlist
+            & > a
+                display block 
                 height 50px
                 line-height 50px
                 text-align center
-                & > a
-                    font-size 15px
+                color grey 
+                text-decoration none
+                &.router-link-active
                     color white
-                    text-decoration none
+                    background #2c75e6
 </style>
 
 

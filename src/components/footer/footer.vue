@@ -12,7 +12,7 @@ export default {
     .footer
         position relative
         background #35425b
-        height 250px
+        height 275px
 </style>
 
 

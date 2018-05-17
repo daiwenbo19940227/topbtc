@@ -36,9 +36,11 @@ export default {
 </script>
 <style lang="stylus">
     .header
+        position fixed
         background #2c75e6
         width 100%
-        height 50px 
+        height 50px
+        z-index 999 
         .logo
             display inline-block
             width 100px

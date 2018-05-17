@@ -1,21 +1,24 @@
 <template>
-  <div class="home">
-    <v-header></v-header>
-    <b-container>
-      <div class="change">
-          <b-row>
-            <b-col>
-                <div class="rateExchange" id="rateExchange">汇率$USD<span class="iconfont icon-xiala1"></span></div>
-            </b-col>
-            <b-col>
-                <div class="lanagueExchange" id="bbb">中文简体</div>
-            </b-col>
-          </b-row>
+  <div>
+      <v-header></v-header>
+      <div class="home">
+            <div class="change">
+              <b-container>
+                    <b-row>
+                      <b-col>
+                          <div class="rateExchange" id="rateExchange">汇率$USD<span class="iconfont icon-xiala1"></span></div>
+                      </b-col>
+                      <b-col>
+                          <div class="lanagueExchange" id="bbb">中文简体<span class="iconfont icon-xiala1"></span></div>
+                      </b-col>
+                    </b-row>
+              </b-container>
+            </div>
+        <noticetitle></noticetitle>
+        <router-view></router-view>
+        <v-footer></v-footer>
       </div>
-      <router-view></router-view>
-    </b-container>
-    <v-footer></v-footer>
-  </div>
+  </div>  
 </template>
 <script>
 import header from '../header/header'
@@ -34,6 +37,9 @@ export default {
 
 <style lang="stylus">
 .home
+  position relative
+  padding-top 50px
+  background-color yellow
   .change
     background #ffffff
     height 50px
@@ -42,6 +48,7 @@ export default {
       font-size 16px
       line-height 50px
       font-weight 700
+      cursor pointer
     .rateExchangeItem
       width 300px
       background red
