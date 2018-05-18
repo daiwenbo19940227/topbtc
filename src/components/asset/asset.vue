@@ -1,5 +1,7 @@
 <template>
-  <div>我是资产管理</div>
+  <div class="asset">
+    <b-container></b-container>
+  </div>
 </template>
 <script>
 export default {
@@ -7,7 +9,9 @@ export default {
 }
 </script>
 <style lang="stylus">
-
+  .asset
+    min-height 575px
+    background-color red
 </style>
 
 

@@ -1,7 +1,6 @@
 <template>
   <div class="invite">
       <b-container>
-        邀请好友
       </b-container>
   </div>
 </template>
@@ -11,5 +10,7 @@ export default {
 }
 </script>
 <style lang="stylus">
-
+  .invite
+    min-height 575px
+    background-color green
 </style>

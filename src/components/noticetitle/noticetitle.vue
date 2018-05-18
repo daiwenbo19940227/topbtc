@@ -59,6 +59,7 @@ export default {
       font-size 14px
       font-weight 700
       cursor pointer
+      text-align center
     .news-item:hover
         color #2c75e6
     .show

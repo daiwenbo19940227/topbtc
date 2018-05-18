@@ -28,7 +28,7 @@
                    </template>
                    <template slot="actions" slot-scope="data" class="aaa">
                        <span class="iconfont icon-zhuzhuangtu"></span>
-                       <span class="iconfont icon-xing"></span>
+                       <span class="iconfont  "></span>
                    </template>
                    </b-table>
                   <!-- <div v-for="(item,index) in coin" :key="index">{{item}}</div> -->
