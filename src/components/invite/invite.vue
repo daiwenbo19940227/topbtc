@@ -1,6 +1,8 @@
 <template>
   <div class="invite">
-      我是邀请朋友
+      <b-container>
+        邀请好友
+      </b-container>
   </div>
 </template>
 <script>

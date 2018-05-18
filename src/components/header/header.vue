@@ -8,11 +8,12 @@
                    <b-col cols="7">
                        <div class="head-navbar">
                            <b-nav>
-                               <b-nav-item><router-link to="/market">行情信息</router-link> </b-nav-item>
+                               <b-nav-item v-for="(item,index) in nav" :key="index" :class="{active:index==active}" @click="selectItem(index)"><router-link :to="href[index]">{{item}}</router-link></b-nav-item>
+                               <!-- <b-nav-item><router-link to="/market">行情信息</router-link> </b-nav-item>
                                <b-nav-item><router-link to="/asset">C2C交易大厅</router-link> </b-nav-item>
                                <b-nav-item><router-link to="/account">财务中心</router-link> </b-nav-item>
                                <b-nav-item><router-link to="/invite">邀请朋友</router-link></b-nav-item>
-                               <b-nav-item><router-link to="/notice">公告</router-link></b-nav-item>
+                               <b-nav-item><router-link to="/notice">公告</router-link></b-nav-item> -->
                            </b-nav>
                        </div>
                    </b-col>
@@ -31,10 +32,22 @@
     
  */
 export default {
-  
+  data(){
+      return{
+          active:0,
+          nav:["行情信息","C2C交易大厅","财务中心","邀请朋友","公告"],
+          href:["market","asset","account","invite","notice"]
+      }
+  },
+  methods:{
+      selectItem(index){
+          this.active = index
+      }
+  }
 }
 </script>
 <style lang="stylus">
+@import "../../common/stylus/index.styl";
     .header
         position fixed
         background #2c75e6
@@ -49,6 +62,7 @@ export default {
             background-size 100px 26px
             background-repeat no-repeat
             margin-top 12px
+            cursor pointer
         .head-navbar
             .nav
                 .nav-item
@@ -69,6 +83,8 @@ export default {
                             display block
                             font-size 14px
                             color white
+                .active
+                    background: #0c69d6
         .login-register
             height 50px
             .login,.register

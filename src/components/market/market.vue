@@ -28,6 +28,7 @@
                    </template>
                    <template slot="actions" slot-scope="data" class="aaa">
                        <span class="iconfont icon-zhuzhuangtu"></span>
+                       <span class="iconfont icon-xing"></span>
                    </template>
                    </b-table>
                   <!-- <div v-for="(item,index) in coin" :key="index">{{item}}</div> -->
@@ -108,9 +109,9 @@ export default {
                 margin-left 15px
                 border-bottom 1px solid
                 :hover
-                    background #2c75e6
+                    background #0c69d6
                     -moz-transition: all 0.5s ease-in-out 0s
-                    -webkit-transition:all 0.5s ease-in-out 0s      
+                    -webkit-transition:all 0.5s ease-in-out 0s
                 .active
                     background white
                     border-top 1px solid
@@ -154,6 +155,6 @@ export default {
                             .icon-zhuzhuangtu
                                 color #c2cad1
                                 cursor pointer
+                            .icon-zhuzhuangtu:hover
+                                color #2c75e6
 </style>
-
-
