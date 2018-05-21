@@ -9,11 +9,6 @@
                        <div class="head-navbar">
                            <b-nav>
                                <b-nav-item v-for="(item,index) in nav" :key="index" :class="{active:index==active}" @click="selectItem(index)"><router-link :to="href[index]">{{item}}</router-link></b-nav-item>
-                               <!-- <b-nav-item><router-link to="/market">行情信息</router-link> </b-nav-item>
-                               <b-nav-item><router-link to="/asset">C2C交易大厅</router-link> </b-nav-item>
-                               <b-nav-item><router-link to="/account">财务中心</router-link> </b-nav-item>
-                               <b-nav-item><router-link to="/invite">邀请朋友</router-link></b-nav-item>
-                               <b-nav-item><router-link to="/notice">公告</router-link></b-nav-item> -->
                            </b-nav>
                        </div>
                    </b-col>
@@ -28,19 +23,19 @@
         </div> 
 </template>
 <script>
-/**
-    
- */
+
 export default {
   data(){
       return{
           active:0,
-          nav:["行情信息","C2C交易大厅","财务中心","邀请朋友","公告"],
-          href:["market","asset","account","invite","notice"]
+          nav:["行情信息","资产管理","账号中心 ","邀请朋友","公告"],
+          href:["market","asset","account","invite","notice"],
+          navItem:[]
       }
   },
   methods:{
       selectItem(index){
+          console.log(index)
           this.active = index
       }
   }
