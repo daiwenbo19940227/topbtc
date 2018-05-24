@@ -5,7 +5,7 @@
         <b-col class="navNav">
           <div class="navWapper">
             <b-nav vertical>
-              <b-nav-item v-for="(item,index) in navItem" :key="index" class="navItem" :class="{active:index == active}" @click="navChange(index)">{{item}}</b-nav-item>
+              <b-nav-item v-for="(item,index) in navItems" :key="index" class="navItem" :class="{active:index == active}" @click="navChange(index)">{{item}}</b-nav-item>
             </b-nav>
           </div>
         </b-col>
@@ -16,20 +16,23 @@
 <script>
 export default {
     props:{
-        navItem:{
-            type:Object
+        nav:{
+            type:Array
         }
     },
     data(){
         return{
             active:0,
-            // navItem:["账号概览","账户安全","KYC认证","API密钥","服务协议"]
+             navItems:[]
         }
     },
     methods:{
         navChange(onIndex){
             this.active = onIndex
         }
+  },
+  created(){
+      this.navItems = this.nav
   }
 }
 </script>

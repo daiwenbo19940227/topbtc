@@ -3,7 +3,7 @@
            <b-container>
                <b-row>
                    <b-col cols="2">
-                       <div class="logo"></div>
+                       <div class="logo" @click="backHome"></div>
                    </b-col>
                    <b-col cols="7">
                        <div class="head-navbar">
@@ -15,7 +15,7 @@
                    <b-col cols="3">
                        <div class="login-register">
                            <span class="login"><router-link to="/login">登陆</router-link></span>
-                           <span class="register"><router-link to="/register">注册</router-link> </span>
+                           <span class="registerbtn"><router-link to="/register">注册</router-link> </span>
                        </div>
                    </b-col>
                </b-row>
@@ -29,14 +29,23 @@ export default {
       return{
           active:0,
           nav:["行情信息","资产管理","账号中心 ","邀请朋友","公告"],
-          href:["market","asset","account","invite","notice"],
-          navItem:[]
+          href:["market","asset","account","invite","notice"]
       }
   },
   methods:{
       selectItem(index){
-          console.log(index)
           this.active = index
+          let navItems = ""
+          if(index == 2){
+              navItems = ["账号概览","账户安全","KYC认证","API密钥","服务协议"]
+          }
+          if(index==1||index==3){
+              navItems = ["我的资产","转入数字资产","转出数字资产","委托列表","成交记录","获赠记录","鼓励金记录","邀请奖励"]
+          }
+          this.$emit('clickNav',navItems)
+      },
+      backHome(){
+          this.$router.push('market')
       }
   }
 }
@@ -82,7 +91,7 @@ export default {
                     background: #0c69d6
         .login-register
             height 50px
-            .login,.register
+            .login,.registerbtn
                 float right
                 margin-top 10px
                 margin-left 10px
@@ -97,9 +106,9 @@ export default {
                     text-decoration none
             .login a
                 color #2c75e6
-            .register
+            .registerbtn
                 background #2c75e6
-            .register a
+            .registerbtn a
                 color white
 
 </style>

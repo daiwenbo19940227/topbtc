@@ -7,7 +7,7 @@
                 <b-col cols="10" class="content">
                 <h5>请确保您满足以下条件再进行登录/注册</h5>
                 <ul class="item">
-                    <li><b-form-checkbox><span>请认准网址 http://www.topbtc.one</span></b-form-checkbox></li>
+                    <li><b-form-checkbox-group><span>请认准网址 http://www.topbtc.one</span></b-form-checkbox-group></li>
                     <li><b-form-checkbox><span>遵守各国反洗钱法律法规，在必要的情况下可以接受数字资产审查。</span></b-form-checkbox></li>
                     <li><b-form-checkbox><span>具有两年以上证券、基金、期货、黄金、外汇投资经验。</span></b-form-checkbox></li>
                     <li><b-form-checkbox><span>可以承受超过50%的亏损，甚至资产归零的风险。</span></b-form-checkbox></li>

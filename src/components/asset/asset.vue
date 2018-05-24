@@ -3,11 +3,7 @@
     <b-container>
       <b-row>
         <b-col class="assetNav" cols="2">
-          <div class="assetWapper">
-            <b-nav vertical>
-              <b-nav-item v-for="(item,index) in navItem" :key="index" class="navItem" :class="{active:index == active}" @click="navChange(index)">{{item}}</b-nav-item>
-            </b-nav>
-          </div>
+          <v-nav :nav = "nav"></v-nav>
         </b-col>
         <b-col class="assetMain" cols="10">
         </b-col>
@@ -16,47 +12,33 @@
   </div>
 </template>
 <script>
+import nav from "../nav/nav"
 export default {
+  props:{
+     childNavItem:{
+        type:Array
+    }
+  },
   data(){
     return{
-      navItem:["我的资产","转入数字资产","转出数字资产","委托列表","成交记录","获赠记录","鼓励金记录","邀请奖励"],
-      active:0
+      active:0,
+      nav:[]
     }
   },
   methods:{
     navChange(onIndex){
       this.active = onIndex
     }
+  },
+  components:{
+    'v-nav':nav
+  },
+  created(){
+    this.nav = this.childNavItem
   }
 }
 </script>
 <style lang="stylus">
   .asset
     min-height 575px
-    .assetNav
-      .assetWapper
-        width 160px
-        margin 0 auto
-        margin-top 20px
-        box-shadow #eee 0 0 20px 
-        background-color white
-        .navItem
-          height 45px
-          line-height 45px
-          font-size 14px
-          text-align center
-          border-bottom 1px solid #eeeeee
-          & > a
-            color black
-          & > a:hover
-            color #2c75e6
-        .active
-          background #ecf4fe
-          border-right 3px solid #2c75e6
-          & > a
-            color #2c75e6
-    .assetMain
-      .assetMainWapper
-        background-color white
-        margin-top 20px
 </style>

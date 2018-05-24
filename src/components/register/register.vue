@@ -5,7 +5,7 @@
       <b-row>
         <b-col cols="8" class="schedule"><div id="step"></div></b-col>
       </b-row>
-      <b-row>
+      <b-row v-show="agreeIsshow">
         <b-col cols="8" class="registerWapper">
           <b-row>
             <b-col cols="10" class="content">
@@ -82,13 +82,15 @@
             </b-col>
           </b-row>
           <b-row class="registerCheck">
-            <b-col cols="3" class="registerCheckContent"><b-form-checkbox><span class="text">同意服务协议</span></b-form-checkbox></b-col>
+            <b-col cols="3" class="registerCheckContent"><b-form-checkbox v-model="status" value="true" unchecked-value="false" @click.native="isClickfun"><span class="text">同意服务协议</span></b-form-checkbox></b-col>
           </b-row>
           <b-row class="registerBtn">
-            <b-col cols="2" class="btnContent"><b-btn>下一步</b-btn></b-col>
+            <b-col cols="2" class="btnContent"><b-btn class="btn" :disabled=isClick size="sm" variant="primary" @click="change">下一步</b-btn></b-col>
           </b-row>
         </b-col>
       </b-row>
+      <register-main v-show="mainIsshow" @emailCheck ="goEmialCheck"></register-main>
+      <emialCheck v-show="emailCheckIsshow"></emialCheck>
     </b-container>
   </div>
 </template>
@@ -96,7 +98,18 @@
 	import jquery from "../../common/js/jquery.min.js"
   import step from "../../common/js/jquery.step.min.js"
   import swiper from "swiper"
+  import registerMain from "../registerMain/registerMain.vue"
+  import registerEmailCheck from "../registerEmailCheck/registerEmailCheck.vue"
 	export default {
+    data(){
+      return{
+        isClick:false,
+        status:'true',
+        agreeIsshow:true,
+        mainIsshow:false,
+        emailCheckIsshow:false
+      }
+    },
 		created(){
       this.$nextTick(()=>{
         var $step = $("#step");
@@ -104,6 +117,9 @@
         index: 0,
         time: 500,
         title: ["服务协议", "注册账号", "激活邮箱"]
+        });
+        $(".btn").on("click", function() {
+          $step.nextStep();
         });
       })
     },
@@ -117,6 +133,27 @@
       },
       mousewheel: true,
       });
+    },
+    methods:{
+      isClickfun(){
+        if(this.status=="false"){
+          this.isClick = false
+        }else{
+          this.isClick = true
+        }
+      },
+      change(){
+        this.agreeIsshow = !this.agreeIsshow;
+        this.mainIsshow = !this.mainIsshow;
+      },
+      goEmialCheck(){
+        this.mainIsshow = !this.mainIsshow;
+        this.emailCheckIsshow = !this.emailCheckIsshow
+      }
+    },
+    components:{
+      registerMain,
+      'emialCheck':registerEmailCheck
     }
 	}
 </script>
@@ -124,6 +161,7 @@
 @import '../../common/stylus/jquery.step.css'
 @import "../../../node_modules/swiper/dist/css/swiper.min.css"
   .register
+    min-height 575px
     background #eeeeee
     .schedule
       margin 0 auto

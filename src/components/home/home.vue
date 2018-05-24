@@ -1,6 +1,6 @@
 <template>
   <div>
-      <v-header></v-header>
+      <v-header @clickNav = "change"></v-header>
       <div class="home">
             <div class="change">
               <b-container>
@@ -29,7 +29,7 @@
               </b-container>
             </div>
         <noticetitle></noticetitle>
-        <router-view></router-view>
+        <router-view :childNavItem="parentNavItem"></router-view>
         <v-footer></v-footer>
       </div>
   </div>  
@@ -76,15 +76,21 @@ export default {
         {name:"฿",value:"THB"},
         {name:"₺",value:"TRY"}
       ],
-      language:["English","русский","한국어","日本語","Portugues","中文简体","Nederlands","中文繁体","Deutsch","Français","Español"]
+      language:["English","русский","한국어","日本語","Portugues","中文简体","Nederlands","中文繁体","Deutsch","Français","Español"],
+      parentNavItem:[]
     }
   },
   methods : {
+    change(navItems){
+      this.parentNavItem = navItems
+    }
   },
   components : {
    'v-header' : header,
    noticetitle,
    'v-footer':footer
+  },
+  created(){
   }
 }
 </script>
