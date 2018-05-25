@@ -15,49 +15,51 @@
                             </b-row>
                             <b-row>
                                 <b-col cols="10" class="registerInput">
-                                    <ul>
-                                        <li>
-                                            <b-form-group
-                                            id="email"
-                                            description=""
-                                            label="*邮箱："
-                                            label-for = "inputEmail"
-                                            >
-                                                <b-form-input id="inputEmail"></b-form-input>
-                                            </b-form-group>
-                                        </li>
-                                        <li>
-                                            <b-form-group
-                                            id="password"
-                                            description=""
-                                            label="*密码："
-                                            label-for = "inputPssword"
-                                            >
-                                                <b-form-input type="password" id="inputPssword"></b-form-input>
-                                            </b-form-group>
-                                        </li>
-                                        <li>
-                                            <b-form-group
-                                            id="password2"
-                                            description=""
-                                            label="*确认密码："
-                                            label-for = "inputPssword2"
-                                            >
-                                                <b-form-input type="password" id="inputPssword2"></b-form-input>
-                                            </b-form-group>
-                                        </li>
-                                        <li>
-                                            <b-form-group
-                                            id="referralCode"
-                                            description=""
-                                            label="*邀请码"
-                                            label-for = "inputReferralCode"
-                                            >
-                                                <b-form-input id="inputReferralCode" placeholder="可以不填"></b-form-input>
-                                            </b-form-group>
-                                        </li>
-                                        <li><b-btn variant="primary" class="btn" @click="gotoEmailCheck">下一步</b-btn></li>
-                                    </ul>
+                                    <b-form>
+                                        <ul>
+                                            <li>
+                                                <b-form-group
+                                                id="email"
+                                                description=""
+                                                label="*邮箱："
+                                                label-for = "inputEmail"
+                                                >
+                                                    <b-form-input type="email" id="inputEmail" v-model="form.email"  required></b-form-input>
+                                                </b-form-group>
+                                            </li>
+                                            <li>
+                                                <b-form-group
+                                                id="password"
+                                                description=""
+                                                label="*密码："
+                                                label-for = "inputPssword"
+                                                >
+                                                    <b-form-input type="password" id="inputPssword" v-model="form.password"></b-form-input>
+                                                </b-form-group>
+                                            </li>
+                                            <li>
+                                                <b-form-group
+                                                id="password2"
+                                                description=""
+                                                label="*确认密码："
+                                                label-for = "inputPssword2"
+                                                >
+                                                    <b-form-input type="password" id="inputPssword2" v-model="form.password2"></b-form-input>
+                                                </b-form-group>
+                                            </li>
+                                            <li>
+                                                <b-form-group
+                                                id="referralCode"
+                                                description=""
+                                                label="*邀请码"
+                                                label-for = "inputReferralCode"
+                                                >
+                                                    <b-form-input id="inputReferralCode" placeholder="可以不填" v-model="form.referralCode"></b-form-input>
+                                                </b-form-group>
+                                            </li>
+                                            <li><b-btn type="submit" variant="primary" class="btn" @click="gotoEmailCheck" :disabled="$v.form.$invalid">下一步</b-btn></li>
+                                        </ul>
+                                    </b-form>
                                 </b-col>
                             </b-row>
                         </b-col>
@@ -68,7 +70,23 @@
     </div>
 </template>
 <script>
+import{validationMixin} from "../../../node_modules/vuelidate"
+import{required,email} from "../../../node_modules/vuelidate/lib/validators"
 export default {
+    data(){
+        return{
+            form:{}
+        }
+    },
+    mixins:[validationMixin],
+    validations:{
+        form:{
+            email:{
+                required,
+                email
+            }
+        }
+    },
     created(){
     },
     methods:{
@@ -108,5 +126,5 @@ export default {
                 font-size 14px
                 font-weight 700
                 .btn
-                    width 100%
+                    width 100%             
 </style>
