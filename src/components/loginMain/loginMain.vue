@@ -29,7 +29,7 @@
                             <li><b-btn class="login">登陆</b-btn></li>
                             <li>
                                 <b-row>
-                                    <b-col class="register">账号注册</b-col>
+                                    <b-col class="Loginregister">账号注册</b-col>
                                     <b-col class="forgetPassword">忘记密码？</b-col>
                                 </b-row>
                             </li>
@@ -46,8 +46,10 @@ export default {
 }
 </script>
 <style lang="stylus" scoped>
+.loginMain
+    min-height 575px
+    margin 0 auto
     .loginMainWapper
-        margin 0 auto
         margin-top 87.5px
         width 480px
         height 400px
@@ -61,7 +63,7 @@ export default {
             .login
                 width 100%
                 background-color #2c75e6
-            .register,.forgetPassword
+            .Loginregister,.forgetPassword
                 font-size 14px
                 color  #2c75e6
                 cursor pointer

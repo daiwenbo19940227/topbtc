@@ -2,7 +2,7 @@
   <div class="login">
       <b-container>
         <b-row>
-            <b-col cols="8" class="loginWapper">
+            <b-col cols="8" class="loginWapper" v-show="isLogin">
             <b-row>
                 <b-col cols="10" class="content">
                 <h5>请确保您满足以下条件再进行登录/注册</h5>
@@ -14,17 +14,33 @@
                     <li><b-form-checkbox><span>法定年龄已满18周岁。</span></b-form-checkbox></li>
                     <li><b-form-checkbox><span class="text">本人确认完全满足以上条件，清楚了解全部存在的风险，自愿承担一切相应的后果</span></b-form-checkbox></li>
                 </ul>
-                <div class="btn"><b-btn>确认</b-btn></div>
+                <div><b-btn variant="primary" class="btn" @click="nextLoginMain">确认</b-btn></div>
                 </b-col>
             </b-row>
             </b-col>
+            <loginMain v-show="isLoginMain"></loginMain>
       </b-row>
       </b-container>
   </div>
 </template>
 <script>
+import loginMain from "../loginMain/loginMain"
 export default {
-
+  data(){
+    return{
+      isLogin:true,
+      isLoginMain:false
+    }
+  },
+  methods:{
+    nextLoginMain(){
+      this.isLogin = !this.isLogin
+      this.isLoginMain = !this.isLoginMain
+    }
+  },
+  components:{
+    loginMain
+  }
 }
 </script>
 <style lang="stylus">
@@ -57,4 +73,7 @@ export default {
       .checkAll
         .control-inline
            display inline-block
+      .btn
+        margin-top 15px
+        width 200px
 </style>

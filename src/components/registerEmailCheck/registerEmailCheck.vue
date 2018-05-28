@@ -30,8 +30,8 @@
                                             </b-form-group>          
                                         </b-col>
                                         <b-col cols="4">
-                                            <b-btn class="codeBtn" >发送验证码</b-btn>
-                                        </b-col>
+                                            <b-btn class="codeBtn" variant="primary" @click="codeClick" :disabled="codeDown" v-model="time">{{time}}</b-btn>
+                                        </b-col> 
                                     </b-row>
                                 </li>
                                 <li><b-btn class="emaliCheckBtn" variant="primary">提交</b-btn></li>
@@ -45,7 +45,29 @@
 </template>
 <script>
 export default {
-    
+    data(){
+        return{
+            codeDown:false,
+            time : "发送验证码"
+
+        }
+    },
+    methods:{
+        codeClick(){
+            this.time = 60
+            this.codeDown = true
+            this.wait()
+        },
+        wait(){
+            if(this.time>0){
+            this.time--
+            setTimeout(this.wait,1000)
+            }else{
+                this.codeDown = false
+                this.time = "发送验证码"
+            }
+        }
+    }
 }
 </script>
 <style lang="stylus">
