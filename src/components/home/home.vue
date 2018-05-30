@@ -7,10 +7,16 @@
                     <b-row>
                       <b-col>
                           <div class="rateExchange" id="rateExchange">汇率$USD<span class="iconfont icon-xiala1"></span></div>
-                          <b-row id="rate">
-                            <b-popover target = "rateExchange" triggers="hover" placement="bottomright" :delay=delay container="rate">
+                          <b-row id="rate" ref="popover">
+                            <b-popover 
+                                target = "rateExchange"  
+                                placement="bottomright"   
+                                container="rate"
+                                :show.sync="isShow"
+                                :delay=delay 
+                                >
                                 <b-row>
-                                  <b-col cols="3" v-for="(item,index) in rata" :key="index" class="rataItem"><span class="blue">{{item.name}}</span> <span>{{item.value}}</span></b-col>
+                                  <b-col cols="3" v-for="(item,index) in rata" :key="index" class="rataItem" @click="changeRate"><span class="blue">{{item.name}}</span> <span>{{item.value}}</span></b-col>
                                 </b-row>
                             </b-popover>
                           </b-row>
@@ -38,6 +44,7 @@
 import header from '../header/header'
 import noticetitle from '../noticetitle/noticetitle'
 import footer from '../footer/footer'
+import jquery from "../../common/js/jquery.min.js"
 export default {
   data(){
     return{
@@ -77,13 +84,19 @@ export default {
         {name:"₺",value:"TRY"}
       ],
       language:["English","русский","한국어","日本語","Portugues","中文简体","Nederlands","中文繁体","Deutsch","Français","Español"],
-      parentNavItem:[]
+      parentNavItem:[],
+      isEnter:false,
+      isShow:false
     }
   },
   methods : {
     change(navItems){
       this.parentNavItem = navItems
-    }
+    },
+    changeRate(){
+      this.$root.$emit('bv::hide::popover','rateExchange')
+      console.log("切换语言")
+    },
   },
   components : {
    'v-header' : header,
