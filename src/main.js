@@ -24,7 +24,6 @@ import './common/stylus/index.styl'
 import './common/stylus/iconfont.css'
 require('bootstrap/dist/js/bootstrap.js')
 
-
 Vue.config.productionTip = false
 
 Vue.use(BootstrapVue)

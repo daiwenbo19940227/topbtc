@@ -6,14 +6,17 @@
               <b-container>
                     <b-row>
                       <b-col>
-                          <div class="rateExchange" id="rateExchange">汇率$USD<span class="iconfont icon-xiala1"></span></div>
+                          <div class="rateExchange" id="rateExchange" @mouseover="enter" @mouseout="out">汇率$USD<span class="iconfont icon-xiala1"></span></div>
                           <b-row id="rate" ref="popover">
                             <b-popover 
                                 target = "rateExchange"  
-                                placement="bottomright"   
+                                placement="bottomright"  
+                                triggers=""
                                 container="rate"
                                 :show.sync="isShow"
-                                :delay=delay 
+                                :delay.sync="delay"
+                                @shown = "isEnterpop"
+                                @hide = "isleave"
                                 >
                                 <b-row>
                                   <b-col cols="3" v-for="(item,index) in rata" :key="index" class="rataItem" @click="changeRate"><span class="blue">{{item.name}}</span> <span>{{item.value}}</span></b-col>
@@ -48,7 +51,7 @@ import jquery from "../../common/js/jquery.min.js"
 export default {
   data(){
     return{
-      delay:{show:200,hide:500},
+      delay:{show:500,hide:500},
       rata:[
         {name:"R",value:"ZAR"},
         {name:"$",value:"美元"},
@@ -96,7 +99,36 @@ export default {
     changeRate(){
       this.$root.$emit('bv::hide::popover','rateExchange')
       console.log("切换语言")
+    }, 
+    enter(){
+      this.$root.$emit('bv::show::popover','rateExchange') 
     },
+    out(){
+        var that = this
+        setTimeout(function (){
+          that.close()
+        }, 1000);
+    },
+    close(){
+      if(this.isEnter==false){
+        this.$root.$emit('bv::hide::popover','rateExchange')
+      }
+    },
+    isEnterpop(){
+          var that = this
+          let popover = that.$refs.popover
+          $(popover).find('div.popover').on('mouseenter',function(){
+            that.isEnter = true
+          }).on('mouseleave',function(){
+            that.isEnter=false
+            that.$root.$emit('bv::hide::popover','rateExchange')
+          })
+    },
+    isleave(event){
+      if(this.isEnter==true){
+        event.preventDefault()
+      }
+    }
   },
   components : {
    'v-header' : header,
