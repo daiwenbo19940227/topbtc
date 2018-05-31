@@ -24,14 +24,22 @@
                        {{data.item.coin}}/{{data.item.market}}
                    </template>
                    <template slot="transaction" slot-scope="data">
-                        <span class="sell">买入</span><span class="buy">卖出</span>
+                        <span class="buy" :id="data.item.coin">买入</span><span class="sell">卖出</span>
+                        <b-row>
+                            <b-popover
+                            :target="data.item.coin" 
+                            triggers="hover"
+                            placement="bottom"
+                            >
+                            买入
+                            </b-popover>
+                        </b-row>
                    </template>
                    <template slot="actions" slot-scope="data" class="actions">
                        <router-link to="kLine"><span class="iconfont icon-zhuzhuangtu"></span></router-link>
                        <span class="iconfont icon-xing"></span>
                    </template>
                    </b-table>
-                  <!-- <div v-for="(item,index) in coin" :key="index">{{item}}</div> -->
                </b-col>
            </b-row>
         </b-container>
@@ -149,8 +157,8 @@ export default {
                                font-size 14px
                                color red
                                cursor pointer
+                               margin-left 10px
                             .buy
-                                margin-left 10px
                                 color green
                             .icon-zhuzhuangtu
                                 color #c2cad1

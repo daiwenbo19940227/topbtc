@@ -13,8 +13,6 @@
                                 placement="bottomright"  
                                 triggers=""
                                 container="rate"
-                                :show.sync="isShow"
-                                :delay.sync="delay"
                                 @shown = "isEnterpop"
                                 @hide = "isleave"
                                 >
@@ -25,11 +23,17 @@
                           </b-row>
                       </b-col>
                       <b-col>
-                          <div class="lanagueExchange" id="lanagueExchange">中文简体<span class="iconfont icon-xiala1"></span></div>
-                          <b-row id="lanague">
-                            <b-popover target = "lanagueExchange" triggers="hover" placement="bottomleft" :delay=delay container="lanague">
+                          <div class="lanagueExchange" id="lanagueExchange" @mouseover="languageEnter" @mouseout="languageLeave">中文简体<span class="iconfont icon-xiala1"></span></div>
+                          <b-row id="lanague" ref="language">
+                            <b-popover 
+                            target = "lanagueExchange"  
+                            placement="bottomleft"
+                            container="lanague"
+                            @shown = "isEnterlanguage"
+                            @hide = "isLeaveLanguage"
+                            >
                               <b-row>
-                                <b-col cols="6" v-for="(item,index) in language" :key="index" class="languageItem"><span></span><span>{{item}}</span></b-col>
+                                <b-col cols="6" v-for="(item,index) in language" :key="index" class="languageItem" @click="changeLanguage"><span></span><span>{{item}}</span></b-col>
                               </b-row>
                             </b-popover>
                           </b-row>
@@ -51,7 +55,6 @@ import jquery from "../../common/js/jquery.min.js"
 export default {
   data(){
     return{
-      delay:{show:500,hide:500},
       rata:[
         {name:"R",value:"ZAR"},
         {name:"$",value:"美元"},
@@ -98,8 +101,14 @@ export default {
     },
     changeRate(){
       this.$root.$emit('bv::hide::popover','rateExchange')
-      console.log("切换语言")
+      this.isEnter = false
+      console.log("切换汇率")
     }, 
+    changeLanguage(){
+      this.$root.$emit('bv::hide::popover','lanagueExchange')
+      this.isEnter = false
+      console.log("切换语言")
+    },
     enter(){
       this.$root.$emit('bv::show::popover','rateExchange') 
     },
@@ -128,6 +137,30 @@ export default {
       if(this.isEnter==true){
         event.preventDefault()
       }
+    },
+    languageEnter(){
+      this.$root.$emit('bv::show::popover','lanagueExchange')
+    },
+    languageLeave(){
+      var that = this
+      setTimeout(function(){
+        that.$root.$emit('bv::hide::popover','lanagueExchange')
+      },1000)
+    },
+    isEnterlanguage(){
+        var that  = this
+        let languagePopover  = this.$refs.language
+        $(languagePopover).find('div.popover').on('mouseenter',function(){
+            that.isEnter = true
+          }).on('mouseleave',function(){
+            that.isEnter=false
+            that.$root.$emit('bv::hide::popover','lanagueExchange')
+          })
+    },
+    isLeaveLanguage(event){
+        if(this.isEnter==true){
+          event.preventDefault()
+        }
     }
   },
   components : {
