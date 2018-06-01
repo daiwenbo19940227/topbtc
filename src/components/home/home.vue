@@ -6,7 +6,7 @@
               <b-container>
                     <b-row>
                       <b-col>
-                          <div class="rateExchange" id="rateExchange" @mouseover="enter" @mouseout="out">汇率$USD<span class="iconfont icon-xiala1"></span></div>
+                          <div class="rateExchange" id="rateExchange"  @mouseover="enter" @mouseout="out">汇率$USD<span class="iconfont icon-xiala1"></span></div>
                           <b-row id="rate" ref="popover">
                             <b-popover 
                                 target = "rateExchange"  
@@ -52,6 +52,7 @@ import header from '../header/header'
 import noticetitle from '../noticetitle/noticetitle'
 import footer from '../footer/footer'
 import jquery from "../../common/js/jquery.min.js"
+var timer =""
 export default {
   data(){
     return{
@@ -99,9 +100,10 @@ export default {
     change(navItems){
       this.parentNavItem = navItems
     },
+    //点击关闭汇率popover
     changeRate(){
-      this.$root.$emit('bv::hide::popover','rateExchange')
       this.isEnter = false
+      this.$root.$emit('bv::hide::popover','rateExchange')
       console.log("切换汇率")
     }, 
     changeLanguage(){
@@ -109,20 +111,19 @@ export default {
       this.isEnter = false
       console.log("切换语言")
     },
+    //鼠标移入rate时显示popover
     enter(){
+      clearTimeout(timer)
       this.$root.$emit('bv::show::popover','rateExchange') 
     },
+    //鼠标移出rate时延时一秒隐藏popover
     out(){
         var that = this
-        setTimeout(function (){
-          that.close()
-        }, 1000);
+        timer = setTimeout(function (){
+          that.$root.$emit('bv::hide::popover','rateExchange')
+        }, 500);
     },
-    close(){
-      if(this.isEnter==false){
-        this.$root.$emit('bv::hide::popover','rateExchange')
-      }
-    },
+    //popover显示之后popover绑定鼠标移入移出事件
     isEnterpop(){
           var that = this
           let popover = that.$refs.popover
@@ -133,19 +134,22 @@ export default {
             that.$root.$emit('bv::hide::popover','rateExchange')
           })
     },
+    //popover消失前判断是否要隐藏popover
     isleave(event){
       if(this.isEnter==true){
         event.preventDefault()
       }
     },
+    //languageExhcange
     languageEnter(){
+      clearTimeout(timer)
       this.$root.$emit('bv::show::popover','lanagueExchange')
     },
     languageLeave(){
       var that = this
-      setTimeout(function(){
+      timer = setTimeout(function(){
         that.$root.$emit('bv::hide::popover','lanagueExchange')
-      },1000)
+      },500)
     },
     isEnterlanguage(){
         var that  = this

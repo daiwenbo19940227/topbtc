@@ -17,6 +17,7 @@
     "popper.js": "^1.12.9",
     "swiper": "^4.2.6",
     "vue": "^2.5.2",
+    "vue-range-slider": "^0.6.0",
     "vue-resource": "^1.5.0",
     "vue-router": "^3.0.1",
     "vuelidate": "^0.7.4"

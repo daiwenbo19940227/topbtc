@@ -24,14 +24,55 @@
                        {{data.item.coin}}/{{data.item.market}}
                    </template>
                    <template slot="transaction" slot-scope="data">
-                        <span class="buy" :id="data.item.coin">买入</span><span class="sell">卖出</span>
-                        <b-row>
+                        <span class="buy" :id="data.item.coin+'buy'">买入</span>
+                        <span class="sell" :id="data.item.coin+'sell'">卖出</span>
+                        <b-row id="buy">
                             <b-popover
-                            :target="data.item.coin" 
+                            :target="data.item.coin+'buy'" 
+                            triggers="click"
+                            placement="bottom"
+                            container="buy"
+                            >
+                               <b-row>
+                                   <b-col>
+                                       <div class="buytitle">
+                                           <span class="buyCoin">买入{{data.item.coin}}</span>
+                                           <span class="sellPrice">卖一价</span>
+                                           <span class="price">{{data.item.ticker.sell}}</span>
+                                           <span class="price">{{data.item.ticker.last}}</span>
+                                       </div>
+                                   </b-col>
+                               </b-row>
+                               <b-row class="actionItems">
+                                   <ul>
+                                        <li>
+                                            <b-input-group :append="data.item.market">
+                                                <b-form-input></b-form-input>
+                                            </b-input-group>
+                                        </li>
+                                        <li>
+                                            <b-input-group :append="data.item.coin">
+                                                <b-form-input></b-form-input>
+                                            </b-input-group>
+                                        </li>
+                                        <li>
+                                            <span class="maxBuytext">最大可买--</span>
+                                            <span class="into">转入BTC</span>
+                                        </li>
+                                        <li><rangeSlider></rangeSlider></li>
+                                        <li>成交额：0BTC</li>
+                                        <li><b-btn>买入</b-btn></li>
+                                   </ul>
+                               </b-row>
+                            </b-popover>
+                        </b-row>
+                         <b-row id="sell">
+                            <b-popover
+                            :target="data.item.coin+'sell'" 
                             triggers="hover"
                             placement="bottom"
                             >
-                            买入
+                            卖出
                             </b-popover>
                         </b-row>
                    </template>
@@ -46,6 +87,8 @@
     </div>
 </template>
 <script>
+import rangeSlider from "vue-range-slider"
+import 'vue-range-slider/dist/vue-range-slider.css'
 export default {
   data(){
       return {
@@ -101,6 +144,9 @@ export default {
         this.coin = btcCoin
         this.active=onIndex
       },
+  },
+  components:{
+      rangeSlider
   }
 }
 </script>
@@ -159,10 +205,34 @@ export default {
                                cursor pointer
                                margin-left 10px
                             .buy
-                                color green
+                                color #2fb990
                             .icon-zhuzhuangtu
                                 color #c2cad1
                                 cursor pointer
                             .icon-zhuzhuangtu:hover
                                 color #2c75e6
+                            #buy
+                                .popover
+                                    max-width 300px
+                                    width 300px
+                                    .buytitle
+                                        .buyCoin
+                                            color #47c19d
+                                            font-size 16px
+                                        .sellPrice
+                                            color #4c4c4c
+                                        .price
+                                            color #2a85f0
+                                    .actionItems
+                                        & > ul
+                                            margin 0 auto
+                                            & > li
+                                                margin-top 5px
+                                                .input-group-text
+                                                    width 60px
+                                                .maxBuytext,.into
+                                                    font-size 14px
+                                                    color #2a85f0
+                                                .into
+                                                    float right 
 </style>
