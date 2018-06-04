@@ -25,21 +25,24 @@
                    </template>
                    <template slot="transaction" slot-scope="data">
                         <span class="buy" :id="data.item.coin+'buy'">买入</span>
-                        <span class="sell" :id="data.item.coin+'sell'">卖出</span>
-                        <b-row id="buy">
+                        <span class="sell" :id="data.item.coin+'sell'" @mouseover="enter(data.item.coin+'sell')" @mouseout="out(data.item.coin+'sell')">卖出</span>
+                        <b-row id="buy" :ref="data.item.coin+'buy'+'popover'">
                             <b-popover
                             :target="data.item.coin+'buy'" 
-                            triggers="click"
                             placement="bottom"
                             container="buy"
+                            triggers="click"
+                            @shown = "isEnter(data.item.coin+'buy'+'popover')"
+                            @hide = "isLeave"
                             >
                                <b-row>
                                    <b-col>
                                        <div class="buytitle">
                                            <span class="buyCoin">买入{{data.item.coin}}</span>
-                                           <span class="sellPrice">卖一价</span>
-                                           <span class="price">{{data.item.ticker.sell}}</span>
-                                           <span class="price">{{data.item.ticker.last}}</span>
+                                           <div class="priceContent">
+                                               <span class="sellPrice">卖一价</span>
+                                               <span class="price">{{data.item.ticker.sell}}</span>
+                                           </div>
                                        </div>
                                    </b-col>
                                </b-row>
@@ -47,21 +50,33 @@
                                    <ul>
                                         <li>
                                             <b-input-group :append="data.item.market">
-                                                <b-form-input></b-form-input>
+                                                <b-form-input placeholder="买入价格"></b-form-input>
                                             </b-input-group>
                                         </li>
                                         <li>
                                             <b-input-group :append="data.item.coin">
-                                                <b-form-input></b-form-input>
+                                                <b-form-input placeholder="买入数量"></b-form-input>
                                             </b-input-group>
                                         </li>
                                         <li>
                                             <span class="maxBuytext">最大可买--</span>
                                             <span class="into">转入BTC</span>
                                         </li>
-                                        <li><rangeSlider></rangeSlider></li>
+                                        <li>
+                                            <span class="rangesliderText">买比例：</span>
+                                            <div class="rangeSlider">
+                                                <rangeSlider
+                                                    class="slider"
+                                                    min = "10"
+                                                    max = "1000"
+                                                    step = "10"
+                                                    v-model="sliderValue"
+                                                >
+                                                </rangeSlider>
+                                            </div>
+                                        </li>
                                         <li>成交额：0BTC</li>
-                                        <li><b-btn>买入</b-btn></li>
+                                        <li><b-btn class="sellBtn">买入</b-btn></li>
                                    </ul>
                                </b-row>
                             </b-popover>
@@ -69,10 +84,55 @@
                          <b-row id="sell">
                             <b-popover
                             :target="data.item.coin+'sell'" 
-                            triggers="hover"
                             placement="bottom"
+                            container="sell"
+                            @shown = "isEnter(data.item.coin+'sell')"
+                            @hide = "isLeave"
                             >
-                            卖出
+                            <b-row>
+                                   <b-col>
+                                       <div class="buytitle">
+                                           <span class="buyCoin">卖出{{data.item.coin}}</span>
+                                           <div class="priceContent">
+                                               <span class="sellPrice">买一价</span>
+                                               <span class="price">{{data.item.ticker.buy}}</span>
+                                           </div>
+                                       </div>
+                                   </b-col>
+                               </b-row>
+                               <b-row class="actionItems">
+                                   <ul>
+                                        <li>
+                                            <b-input-group :append="data.item.market">
+                                                <b-form-input placeholder="卖出价格"></b-form-input>
+                                            </b-input-group>
+                                        </li>
+                                        <li>
+                                            <b-input-group :append="data.item.coin">
+                                                <b-form-input placeholder="卖出数量"></b-form-input>
+                                            </b-input-group>
+                                        </li>
+                                        <li>
+                                            <span class="maxBuytext">最大可卖--</span>
+                                            <span class="into">转入BTC</span>
+                                        </li>
+                                        <li>
+                                            <span class="rangesliderText">卖比例：</span>
+                                            <div class="rangeSlider">
+                                                <rangeSlider
+                                                    class="slider"
+                                                    min = "10"
+                                                    max = "1000"
+                                                    step = "10"
+                                                    v-model="sliderValue"
+                                                >
+                                                </rangeSlider>
+                                            </div>
+                                        </li>
+                                        <li>成交额：0BTC</li>
+                                        <li><b-btn class="sellBtn">卖出</b-btn></li>
+                                   </ul>
+                               </b-row>
                             </b-popover>
                         </b-row>
                    </template>
@@ -89,6 +149,8 @@
 <script>
 import rangeSlider from "vue-range-slider"
 import 'vue-range-slider/dist/vue-range-slider.css'
+require ("../../common/js/jquery.min.js")
+var  nowOuttimer  = "";
 export default {
   data(){
       return {
@@ -100,7 +162,12 @@ export default {
               {key:'ticker.vol',label:'总量',sortable:true},
               {key:'transaction',label:"快捷交易"},
               {key:'actions',label:"操作"}
-          ]
+          ],
+          sliderValue: 100,
+          nowEnter:false,
+          nowEntertimer:"",
+          nowEnter:"",
+          nowOut:""
       }
   },
   computed: {
@@ -144,6 +211,34 @@ export default {
         this.coin = btcCoin
         this.active=onIndex
       },
+      /**
+        sellPopover 移入移出显示以及隐藏 
+      */
+      enter(myId){
+          this.nowEnter = myId
+          var that = this
+          if(this.nowEnter==this.nowOut){
+              clearTimeout(nowOuttimer)
+          }
+          setTimeout(function(){
+              that.$root.$emit('bv::show::popover',myId)
+          },500)
+      },
+      out(myId){
+          this.nowOut = myId
+          var that = this
+          nowOuttimer = setTimeout(function(){
+              that.$root.$emit('bv::hide::popover',myId)
+          },500) 
+      },
+      isEnter(popover){
+         console.log(this.$refs.UQCbuypopover)
+      },
+      isLeave(){
+        if(this.isEnter==true){
+        vent.preventDefault()
+        }
+      }
   },
   components:{
       rangeSlider
@@ -211,28 +306,58 @@ export default {
                                 cursor pointer
                             .icon-zhuzhuangtu:hover
                                 color #2c75e6
-                            #buy
+                            #buy,#sell
                                 .popover
                                     max-width 300px
                                     width 300px
                                     .buytitle
-                                        .buyCoin
-                                            color #47c19d
-                                            font-size 16px
-                                        .sellPrice
-                                            color #4c4c4c
-                                        .price
-                                            color #2a85f0
+                                        .priceContent
+                                            float right 
+                                            .sellPrice
+                                                font-size 12px
+                                                color #4c4c4c
+                                            .price
+                                                font-size 12px
+                                                color #2a85f0
                                     .actionItems
                                         & > ul
                                             margin 0 auto
                                             & > li
                                                 margin-top 5px
-                                                .input-group-text
-                                                    width 60px
+                                                .input-group
+                                                    height  35px
+                                                    .form-control:focus
+                                                        box-shadow 0 0 0 0
+                                                    .form-control::-webkit-input-placeholder
+                                                        font-size 14px
+                                                    .input-group-text
+                                                        width 100px
+                                                        padding: 0.375rem 2.4rem;
+                                                        font-size 14px
                                                 .maxBuytext,.into
-                                                    font-size 14px
+                                                    font-size 12px
                                                     color #2a85f0
                                                 .into
-                                                    float right 
+                                                    float right
+                                                .rangesliderText
+                                                    float left
+                                                .rangeSlider
+                                                    .range-slider
+                                                        width 215px
+                                                .sellBtn
+                                                    width 100%
+                                                    background-color #ffffff
+                                                    color  #47c19d
+                                                .sellBtn:focus
+                                                    box-shadow 0 0 0 0
+                            #buy
+                                .popover
+                                    .buytitle
+                                        .buyCoin
+                                            color #47c19d
+                            #sell
+                                .popover
+                                    .buytitle
+                                        .buyCoin
+                                            color red    
 </style>
