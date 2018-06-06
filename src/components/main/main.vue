@@ -37,12 +37,13 @@ export default {
 </script>
 <style lang="stylus">
 .main
-    background-color #eee
+    background-color #f6f6f6
     min-height 575px
+    box-shadow 0 5px 5px 0px #efefef inset
     .main-nav
         width 50px
         background #35425b
-        margin-top 15px
+        margin-top 30px
         margin-bottom 50px
         min-height 575px
         .navlist
