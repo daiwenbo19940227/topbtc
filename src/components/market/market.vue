@@ -139,8 +139,8 @@
                         </b-row>
                    </template>
                    <template slot="actions" slot-scope="data" class="actions">
-                       <router-link to="kLine"><span class="iconfont icon-zhuzhuangtu"></span></router-link>
-                       <span class="iconfont icon-xing"></span>
+                       <span class="iconfont icon-zhuzhuangtu1"></span>
+                       <span class="iconfont icon-xingxing"></span>
                    </template>
                    </b-table>
                </b-col>
@@ -224,14 +224,14 @@ export default {
           }
           setTimeout(function(){
               that.$root.$emit('bv::show::popover',myId)
-          },500)
+          },300)
       },
       out(myId){
           this.nowOut = myId
           var that = this
           nowOuttimer = setTimeout(function(){
               that.$root.$emit('bv::hide::popover',myId)
-          },500) 
+          },300) 
       },
       isEnter(myPopover){  
           var that = this
@@ -270,9 +270,7 @@ export default {
                 margin-left 15px
                 border-bottom 1px solid
                 :hover
-                    background #0c69d6
-                    -moz-transition: all 0.5s ease-in-out 0s
-                    -webkit-transition:all 0.5s ease-in-out 0s
+                   border-bottom 1px solid
                 .active
                     background white
                     border-top 1px solid
@@ -305,21 +303,40 @@ export default {
                 & > thead
                     background white
                     font-size 14px
-                & > tbody
                     & > tr
+                        & > th
+                          &.sorting_desc
+                               outline:none
+                          &.sorting_asc
+                                outline:none
+                & > tbody
+                    & > tr:nth-of-type(odd)
+                        background-color white
+                    & > tr:hover .icon-xingxing
+                        display inline-block
+                    & > tr
+                        background-color #f7f7f7
                         & > td
                             .sell,.buy
                                font-size 14px
                                color red
                                cursor pointer
-                               margin-left 10px
                             .buy
                                 color #2fb990
-                            .icon-zhuzhuangtu
+                            .sell
+                                margin-left 10px
+                            .icon-zhuzhuangtu1
                                 color #c2cad1
                                 cursor pointer
-                            .icon-zhuzhuangtu:hover
+                            .icon-zhuzhuangtu1:hover
                                 color #2c75e6
+                            .icon-xingxing
+                                color #c2cad1
+                                margin-left 5px
+                                font-size 14px
+                                display none
+                            .icon-xingxing:hover
+                                color #a9aeb7
                             .popover
                                 max-width 300px
                                 width 300px
@@ -362,15 +379,5 @@ export default {
                                                 background-color #ffffff
                                                 color  #47c19d
                                             .sellBtn:focus
-                                                box-shadow 0 0 0 0
-                            #buy
-                                .popover
-                                    .buytitle
-                                        .buyCoin
-                                            color #47c19d
-                            #sell
-                                .popover
-                                    .buytitle
-                                        .buyCoin
-                                            color red    
+                                                box-shadow 0 0 0 0   
 </style>
