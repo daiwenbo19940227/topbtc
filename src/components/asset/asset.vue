@@ -6,6 +6,7 @@
           <v-nav :nav = "nav"></v-nav>
         </b-col>
         <b-col class="assetMain" cols="10">
+          <myAssets></myAssets>
         </b-col>
       </b-row>
     </b-container>
@@ -13,6 +14,7 @@
 </template>
 <script>
 import nav from "../nav/nav"
+import myAssets from "./myAssets/myAssets"
 export default {
   props:{
      childNavItem:{
@@ -31,7 +33,8 @@ export default {
     }
   },
   components:{
-    'v-nav':nav
+    'v-nav':nav,
+    myAssets
   },
   created(){
     this.nav = this.childNavItem

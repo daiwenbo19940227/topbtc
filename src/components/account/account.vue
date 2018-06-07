@@ -5,13 +5,16 @@
         <b-col class="accountNav" cols="2">
             <v-nav :nav = "nav"></v-nav>
         </b-col>
-        <b-col class="accountMain" cols="10">123</b-col>
+        <b-col class="accountMain" cols="10">
+            <accountOverview></accountOverview>
+        </b-col>
       </b-row>
     </b-container>
   </div>
 </template>
 <script>
 import nav from "../nav/nav"
+import accountOverview from "./accountOverview/accountOverview"
 export default {
   props:{
     childNavItem:{
@@ -25,7 +28,8 @@ export default {
     }
   },
   components:{
-    "v-nav":nav
+    "v-nav":nav,
+    accountOverview
   },
   created(){
     this.nav = this.childNavItem
