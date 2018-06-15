@@ -6,7 +6,7 @@
             <v-nav :nav = "nav"></v-nav>
         </b-col>
         <b-col class="accountMain" cols="10">
-            <accountOverview></accountOverview>
+            <router-view></router-view>
         </b-col>
       </b-row>
     </b-container>

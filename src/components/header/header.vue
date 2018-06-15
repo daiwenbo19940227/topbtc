@@ -14,8 +14,8 @@
                    </b-col>
                    <b-col cols="3">
                        <div class="login-register">
-                           <span class="login"><router-link to="/login">登陆</router-link></span>
                            <span class="registerbtn"><router-link to="/register">注册</router-link> </span>
+                           <span class="login"><router-link to="/login">登陆</router-link></span>
                        </div>
                    </b-col>
                </b-row>
@@ -29,7 +29,7 @@ export default {
       return{
           active:0,
           nav:["行情信息","资产管理","账号中心 ","邀请朋友","公告"],
-          href:["market","asset","account","invite","notice"]
+          href:["market","myAsset","accountOverview","invite","notice"]
       }
   },
   methods:{
@@ -37,10 +37,25 @@ export default {
           this.active = index
           let navItems = ""
           if(index == 2){
-              navItems = ["账号概览","账户安全","KYC认证","API密钥","服务协议"]
+              navItems = [
+                  {title:"账号概览",navHref:"accountOverview"},
+                  {title:"账户安全",navHref:"accountSecurity"},
+                  {title:"KYC认证",navHref:"kycAttestation"},
+                  {title:"API密钥",navHref:"apiSecretkey"},
+                  {title:"服务协议",navHref:"serviceAgreement"}
+              ]
           }
           if(index==1||index==3){
-              navItems = ["我的资产","转入数字资产","转出数字资产","委托列表","成交记录","获赠记录","鼓励金记录","邀请奖励"]
+              navItems = [
+                  {title:"我的资产",navHref:"myAsset"},
+                  {title:"转入数字资产",navHref:"rolloutAsset"},
+                  {title:"转出数字资产",navHref:"rollinAsset"},
+                  {title:"委托列表",navHref:"delegateList"},
+                  {title:"成交记录",navHref:"transactionRecord"},
+                  {title:"获赠记录",navHref:"receiveRecord"},
+                  {title:"鼓励金记录",navHref:"encourageRecord"},
+                  {title:"邀请奖励",navHref:"inviteAward"}
+              ]
           }
           this.$emit('clickNav',navItems)
       },
@@ -83,8 +98,9 @@ export default {
                         padding 0rem 1rem
                         :hover
                             text-decoration none
-                        &>a
-                            display block
+                        & > a
+                            height 40px
+                            display inline-block
                             font-size 14px
                             color white
                 .active

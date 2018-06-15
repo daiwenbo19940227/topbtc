@@ -3,20 +3,20 @@
     <b-container>
       <b-row>
         <b-col cols="11">
-            <b-row><b-col cols="4" v-for="(item,index) in news" :key="index" class="news-item" v-if='index<=2'  ref="newItems" @click="newsItemClick(index)">{{item.title}}({{item.releaseTime}})</b-col></b-row>
+            <b-row><b-col cols="4" v-for="(item,index) in news" :key="index" class="news-item" v-if='index<=2'  ref="newItems" @click="newsItemClick(index)">{{item.title}}<span class="releaseTime">({{item.releaseTime}})</span></b-col></b-row>
         </b-col>
         <b-col cols="1">
-          <span class="show iconfont icon-xiala" v-b-toggle.news-item></span>
+          <span class="showIcon iconfont icon-xiala" v-b-toggle.news-item></span>
         </b-col>
-        <b-collapse id="news-item">
-        <b-row>
+      </b-row>
+      <b-row>
           <b-col cols="11">
-            <b-row>
-              <b-col cols="4" v-for="(item,index) in news" :key="index" class="news-item" v-if="index>2" @click="newsItemClick(index)">{{item.title}}({{item.releaseTime}})</b-col>
-            </b-row>
+              <b-collapse id="news-item">
+                  <b-row>
+                    <b-col cols="4" v-for="(item,index) in news" :key="index" class="news-item" v-if="index>2" @click="newsItemClick(index)">{{item.title}}({{item.releaseTime}})</b-col>
+                  </b-row>
+              </b-collapse>
           </b-col>
-       </b-row>
-      </b-collapse>
       </b-row>
     </b-container>
   </div>
@@ -56,14 +56,17 @@ export default {
   background #fefaed
   .container
     .news-item
-      font-size 14px
-      font-weight 700
+      height 35px
+      line-height 35px
+      font-size 12px
       cursor pointer
-      text-align center
+      .releaseTime
+          margin-left 10px
     .news-item:hover
         color #2c75e6
-    .show
+    .showIcon
       float right
       cursor pointer
+      line-height 35px
 </style>
 

@@ -6,7 +6,7 @@
           <v-nav :nav = "nav"></v-nav>
         </b-col>
         <b-col class="assetMain" cols="10">
-          <myAssets></myAssets>
+          <router-view></router-view>
         </b-col>
       </b-row>
     </b-container>

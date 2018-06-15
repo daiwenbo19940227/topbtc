@@ -25,7 +25,7 @@ export default {
     data(){
         return{
             mymenu:["set","market","optional","hold"],
-            myIcon:["iconfont icon-shezhi","iconfont icon-diqiu","iconfont icon-xing","iconfont icon-qianmoney125"],
+            myIcon:["iconfont icon-shezhi","iconfont icon-diqiu","iconfont icon-xingxing","iconfont icon-qianmoney125"],
             mypopover:["设置","市场","自选","持有"]
         }
     },

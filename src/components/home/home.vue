@@ -6,7 +6,7 @@
               <b-container>
                     <b-row>
                       <b-col>
-                          <div class="rateExchange" id="rateExchange"  @mouseover="enter" @mouseout="out">汇率$USD<span class="iconfont icon-xiala1"></span></div>
+                          <div class="rateExchange" id="rateExchange"  @mouseover="enter('rateExchange')" @mouseout="out('rateExchange')">汇率 <span class="blue">$</span> USD<transition name="rateOverturn"><span class="iconfont icon-xiala1"></span></transition></div>
                           <b-row id="rate" ref="popover">
                             <b-popover 
                                 target = "rateExchange"  
@@ -23,7 +23,7 @@
                           </b-row>
                       </b-col>
                       <b-col>
-                          <div class="lanagueExchange" id="lanagueExchange" @mouseover="languageEnter" @mouseout="languageLeave">中文简体<span class="iconfont icon-xiala1"></span></div>
+                          <div class="lanagueExchange" id="lanagueExchange" @mouseover="languageEnter('lanagueExchange')" @mouseout="languageLeave('lanagueExchange')">中文简体<span class="iconfont icon-xiala1"></span></div>
                           <b-row id="lanague" ref="language">
                             <b-popover 
                             target = "lanagueExchange"  
@@ -93,7 +93,8 @@ export default {
       language:["English","русский","한국어","日本語","Portugues","中文简体","Nederlands","中文繁体","Deutsch","Français","Español"],
       parentNavItem:[],
       isEnter:false,
-      isShow:false
+      nowEnter:"",
+      nowOut:""
     }
   },
   methods : {
@@ -112,12 +113,19 @@ export default {
       console.log("切换语言")
     },
     //鼠标移入rate时显示popover
-    enter(){
-      clearTimeout(timer)
-      this.$root.$emit('bv::show::popover','rateExchange') 
+    enter(rateExchange){
+      var that = this
+      this.nowEnter = rateExchange
+       if(this.nowEnter==this.nowOut){
+          clearTimeout(timer)
+        }
+      setTimeout(function(){
+        that.$root.$emit('bv::show::popover','rateExchange') 
+      },300)
     },
     //鼠标移出rate时延时一秒隐藏popover
-    out(){
+    out(rateExchange){
+        this.nowOut = rateExchange
         var that = this
         timer = setTimeout(function (){
           that.$root.$emit('bv::hide::popover','rateExchange')
@@ -141,11 +149,18 @@ export default {
       }
     },
     //languageExhcange
-    languageEnter(){
-      clearTimeout(timer)
-      this.$root.$emit('bv::show::popover','lanagueExchange')
+    languageEnter(lanagueExchange){
+      this.nowEnter = lanagueExchange
+      if(this.nowEnter==this.nowOut){
+          clearTimeout(timer)
+      }
+      var that = this
+      setTimeout(function(){
+        that.$root.$emit('bv::show::popover','lanagueExchange')
+      })
     },
-    languageLeave(){
+    languageLeave(lanagueExchange){
+      this.nowOut = lanagueExchange
       var that = this
       timer = setTimeout(function(){
         that.$root.$emit('bv::hide::popover','lanagueExchange')
@@ -186,13 +201,11 @@ export default {
     height 50px
     .rateExchange,.lanagueExchange
       width 100px
-      font-size 16px
+      font-size 14px
       line-height 50px
-      font-weight 700
       cursor pointer
-    .rateExchangeItem
-      width 300px
-      background red
+      .blue
+        color #4595f2
     .lanagueExchange
       float right
       text-align right

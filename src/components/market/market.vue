@@ -263,19 +263,19 @@ export default {
         margin-bottom 50px
         .market-head
             height 50px
-            border-bottom 1px solid
+            border-bottom 1px solid #ffffff 
             background-color #eef1f3
             .nav-tabs
                 height 50px
                 margin-left 15px
-                border-bottom 1px solid
+                border-bottom 1px solid #ffffff 
                 :hover
-                   border-bottom 1px solid
+                   border-bottom none
                 .active
                     background white
-                    border-top 1px solid
-                    border-left 1px solid
-                    border-right 1px solid
+                    border-top 1px #ffffff 
+                    border-left 1px #ffffff 
+                    border-right 1px #ffffff 
                 .nav-item
                     width 60px
                     margin-top 10px
@@ -285,17 +285,19 @@ export default {
                         line-height 40px
                         border-radius 0px
                         color black
-                        font-weight 700
+                        border-bottom none
+                        font-size 14px
         .search
             .input-group
-                width 60%
+                width 200px
                 height 30px
                 margin 0 auto
                 margin-top 10px
-                margin-right 0px
-                border-radius 20px 
+                margin-right 15px
+                border-radius 30px 
                 .searchText
                     font-size 14px
+                    border-radius 20px
                 .searchText:focus
                     box-shadow 0px 0px 0px 0px
         .market-form
