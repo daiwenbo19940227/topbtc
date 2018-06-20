@@ -1,7 +1,7 @@
 <template>
         <div class="header">
            <b-container>
-               <b-row>
+               <!-- <b-row>
                    <b-col cols="2">
                        <div class="logo" @click="backHome"></div>
                    </b-col>
@@ -11,12 +11,35 @@
                                <b-nav-item v-for="(item,index) in nav" :key="index" :class="{active:index==active}" @click="selectItem(index)"><router-link :to="href[index]">{{item}}</router-link></b-nav-item>
                            </b-nav>
                        </div>
+                       <b-navbar toggleable>
+                            <b-navbar-toggle target="headNav"></b-navbar-toggle>
+                            <b-collapse is-nav id="headNav">
+                                <b-navbar-nav>
+                                    <b-nav-item v-for="(item,index) in nav" :key="index" :class="{active:index==active}" @click="selectItem(index)"><router-link :to="href[index]">{{item}}</router-link></b-nav-item>
+                                </b-navbar-nav>
+                            </b-collapse>
+                       </b-navbar>
                    </b-col>
                    <b-col cols="3">
                        <div class="login-register">
-                           <span class="registerbtn"><router-link to="/register">注册</router-link> </span>
-                           <span class="login"><router-link to="/login">登陆</router-link></span>
+                           <div class="registerbtn"><router-link to="/register">注册</router-link> </div>
+                           <div class="login"><router-link to="/login">登陆</router-link></div>
                        </div>
+                   </b-col>
+               </b-row> -->
+               <b-row>
+                   <b-col>
+                       <b-navbar toggleable fixed="top">
+                            <b-navbar-brand href="#">
+                                <img src="https://placekitten.com/g/30/30" alt="BV">
+                            </b-navbar-brand>
+                            <b-navbar-toggle target="headNav"></b-navbar-toggle>
+                            <b-collapse is-nav id="headNav">
+                                <b-navbar-nav>
+                                    <b-nav-item v-for="(item,index) in nav" :key="index" :class="{active:index==active}" @click="selectItem(index)"><router-link :to="href[index]">{{item}}</router-link></b-nav-item>
+                                </b-navbar-nav>
+                            </b-collapse>
+                       </b-navbar>
                    </b-col>
                </b-row>
            </b-container>
@@ -68,19 +91,14 @@ export default {
 <style lang="stylus">
 @import "../../common/stylus/index.styl";
     .header
-        position fixed
-        background #2c75e6
-        width 100%
-        height 50px
-        z-index 999 
         .logo
             display inline-block
-            width 100px
-            height 26px
+            width 6.25rem
+            height 1.625rem
             background-image url('../../components/header/logo.jpg')
-            background-size 100px 26px
+            background-size 6.25rem 1.625rem
             background-repeat no-repeat
-            margin-top 12px
+            margin-top 0.75rem
             cursor pointer
         .head-navbar
             .nav
@@ -93,26 +111,26 @@ export default {
                         -o-transition:all 0.5s ease-in-out 0s
                     .nav-link
                         display block
-                        height 50px
-                        line-height 50px
+                        height 3.125rem
+                        line-height 3.125rem
                         padding 0rem 1rem
                         :hover
                             text-decoration none
                         & > a
-                            height 40px
+                            height 2.5rem
                             display inline-block
-                            font-size 14px
+                            font-size 0.875rem
                             color white
                 .active
                     background: #0c69d6
         .login-register
-            height 50px
+            height 3.125rem
             .login,.registerbtn
                 float right
                 margin-top 10px
-                margin-left 10px
-                width 50px
-                height 30px
+                margin-left 5px
+                width 3.125rem
+                height 1.875rem
                 background #d5e3fa
                 text-align center
                 border 1px solid white

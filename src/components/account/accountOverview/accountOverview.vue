@@ -76,9 +76,12 @@
                 <b-row>
                     <b-col>
                         <b-table
+                            show-empty
                             caption-top
                             :items ="items"
                             :fields="fields"
+                            :current-page ="currentPage"
+                            :per-page ="perPage"
                             hover
                             class="recentLoginTable"
                         >
@@ -90,9 +93,9 @@
                         </b-table>
                     </b-col>
                 </b-row>
-                <b-row>
+                <b-row class="currentPageWpper">
                     <b-col>
-                        <b-pagination  :total-rows="totalRows" :per-page="perPage" v-model="currentPage"/>
+                        <b-pagination  :total-rows="totalRows" :per-page ="perPage" v-model="currentPage" class="overViewCurrentPage"/>
                     </b-col>
                 </b-row>
             </div>
@@ -103,15 +106,25 @@
 import jquery from "../../../common/js/jquery.min.js"
 import step from "../../../common/js/jquery.step.min.js"
 const items = [
-    {loginArea:'美国洛杉矶(69.194.13.246)',loginPlatfrom:'Topbtc Web',loginFacility:'Chorm Windows 10',loginTime:'2018-06-19 10:00:10'},
-    {loginArea:'美国洛杉矶(69.194.13.246)',loginPlatfrom:'Topbtc Web',loginFacility:'Chorm Windows 10',loginTime:'2018-06-19 10:00:10'},
-    {loginArea:'美国洛杉矶(69.194.13.246)',loginPlatfrom:'Topbtc Web',loginFacility:'Chorm Windows 10',loginTime:'2018-06-19 10:00:10'},
-    {loginArea:'美国洛杉矶(69.194.13.246)',loginPlatfrom:'Topbtc Web',loginFacility:'Chorm Windows 10',loginTime:'2018-06-19 10:00:10'},
-    {loginArea:'美国洛杉矶(69.194.13.246)',loginPlatfrom:'Topbtc Web',loginFacility:'Chorm Windows 10',loginTime:'2018-06-19 10:00:10'},
-    {loginArea:'美国洛杉矶(69.194.13.246)',loginPlatfrom:'Topbtc Web',loginFacility:'Chorm Windows 10',loginTime:'2018-06-19 10:00:10'},
-    {loginArea:'美国洛杉矶(69.194.13.246)',loginPlatfrom:'Topbtc Web',loginFacility:'Chorm Windows 10',loginTime:'2018-06-19 10:00:10'},
-    {loginArea:'美国洛杉矶(69.194.13.246)',loginPlatfrom:'Topbtc Web',loginFacility:'Chorm Windows 10',loginTime:'2018-06-19 10:00:10'},
-    {loginArea:'美国洛杉矶(69.194.13.246)',loginPlatfrom:'Topbtc Web',loginFacility:'Chorm Windows 10',loginTime:'2018-06-19 10:00:10'}
+    {loginArea:'1美国洛杉矶(69.194.13.246)',loginPlatfrom:'Topbtc Web',loginFacility:'Chorm Windows 10',loginTime:'2018-06-19 10:00:10'},
+    {loginArea:'2美国洛杉矶(69.194.13.246)',loginPlatfrom:'Topbtc Web',loginFacility:'Chorm Windows 10',loginTime:'2018-06-19 10:00:10'},
+    {loginArea:'3美国洛杉矶(69.194.13.246)',loginPlatfrom:'Topbtc Web',loginFacility:'Chorm Windows 10',loginTime:'2018-06-19 10:00:10'},
+    {loginArea:'4美国洛杉矶(69.194.13.246)',loginPlatfrom:'Topbtc Web',loginFacility:'Chorm Windows 10',loginTime:'2018-06-19 10:00:10'},
+    {loginArea:'5美国洛杉矶(69.194.13.246)',loginPlatfrom:'Topbtc Web',loginFacility:'Chorm Windows 10',loginTime:'2018-06-19 10:00:10'},
+    {loginArea:'6美国洛杉矶(69.194.13.246)',loginPlatfrom:'Topbtc Web',loginFacility:'Chorm Windows 10',loginTime:'2018-06-19 10:00:10'},
+    {loginArea:'7美国洛杉矶(69.194.13.246)',loginPlatfrom:'Topbtc Web',loginFacility:'Chorm Windows 10',loginTime:'2018-06-19 10:00:10'},
+    {loginArea:'8美国洛杉矶(69.194.13.246)',loginPlatfrom:'Topbtc Web',loginFacility:'Chorm Windows 10',loginTime:'2018-06-19 10:00:10'},
+    {loginArea:'9美国洛杉矶(69.194.13.246)',loginPlatfrom:'Topbtc Web',loginFacility:'Chorm Windows 10',loginTime:'2018-06-19 10:00:10'},
+    {loginArea:'10美国洛杉矶(69.194.13.246)',loginPlatfrom:'Topbtc Web',loginFacility:'Chorm Windows 10',loginTime:'2018-06-19 10:00:10'},
+    {loginArea:'11美国洛杉矶(69.194.13.246)',loginPlatfrom:'Topbtc Web',loginFacility:'Chorm Windows 10',loginTime:'2018-06-19 10:00:10'},
+    {loginArea:'12美国洛杉矶(69.194.13.246)',loginPlatfrom:'Topbtc Web',loginFacility:'Chorm Windows 10',loginTime:'2018-06-19 10:00:10'},
+    {loginArea:'13美国洛杉矶(69.194.13.246)',loginPlatfrom:'Topbtc Web',loginFacility:'Chorm Windows 10',loginTime:'2018-06-19 10:00:10'},
+    {loginArea:'14美国洛杉矶(69.194.13.246)',loginPlatfrom:'Topbtc Web',loginFacility:'Chorm Windows 10',loginTime:'2018-06-19 10:00:10'},
+    {loginArea:'15美国洛杉矶(69.194.13.246)',loginPlatfrom:'Topbtc Web',loginFacility:'Chorm Windows 10',loginTime:'2018-06-19 10:00:10'},
+    {loginArea:'16美国洛杉矶(69.194.13.246)',loginPlatfrom:'Topbtc Web',loginFacility:'Chorm Windows 10',loginTime:'2018-06-19 10:00:10'},
+    {loginArea:'17美国洛杉矶(69.194.13.246)',loginPlatfrom:'Topbtc Web',loginFacility:'Chorm Windows 10',loginTime:'2018-06-19 10:00:10'},
+    {loginArea:'18美国洛杉矶(69.194.13.246)',loginPlatfrom:'Topbtc Web',loginFacility:'Chorm Windows 10',loginTime:'2018-06-19 10:00:10'},
+    {loginArea:'19美国洛杉矶(69.194.13.246)',loginPlatfrom:'Topbtc Web',loginFacility:'Chorm Windows 10',loginTime:'2018-06-19 10:00:10'}
 ]
 export default {
     data(){
@@ -123,6 +136,8 @@ export default {
                 {key:'loginFacility',label:'登陆设备'},
                 {key:'loginTime',label:'时间'}
             ],
+            currentPage:1,
+            perPage:5,
             totalRows:items.length
         }
     },
@@ -136,6 +151,9 @@ export default {
         });
       })
     },
+    methods:{
+       
+    }
 }
 </script>
 <style lang="stylus">
@@ -148,6 +166,7 @@ export default {
             background-color white
             box-shadow #e8e8e8 0 0 10px
             position relative
+            border-radius 5px
             .accountDetailWapper
                 height 430px
                 width 96%
@@ -208,12 +227,13 @@ export default {
                     & > li:nth-of-type(odd)
                         background-color #f0f5f7
         .recentLogin
+            border-radius 5px
             margin-top 20px
             margin-bottom 30px
             background-color white
             box-shadow #e8e8e8 0 0 10px
             .recentLoginTable
-                font-size 14px
+                font-size 13px
                 color #4c4d4f
                 .title
                     font-size 16px
@@ -221,4 +241,14 @@ export default {
                     color black
                 & > thead > tr 
                     background-color #f7f7f7
+                & > tbody > tr > td
+                    border-top none
+                    border-bottom 1px solid #dee2e6
+                    padding 1rem
+            .currentPageWpper
+                .overViewCurrentPage
+                    margin-top 10px
+                    margin-bottom 20px
+                    margin-right 20px
+                    float right
 </style>

@@ -289,7 +289,7 @@ export default {
                         font-size 14px
         .search
             .input-group
-                width 200px
+                width 50%
                 height 30px
                 margin 0 auto
                 margin-top 10px
@@ -302,6 +302,7 @@ export default {
                     box-shadow 0px 0px 0px 0px
         .market-form
             .myTable
+                font-size 14px
                 & > thead
                     background white
                     font-size 14px
@@ -320,7 +321,6 @@ export default {
                         background-color #f7f7f7
                         & > td
                             .sell,.buy
-                               font-size 14px
                                color red
                                cursor pointer
                             .buy
